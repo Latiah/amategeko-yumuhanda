@@ -1,0 +1,152 @@
+:root {
+  --bg: #f3f5f9;
+  --card: #ffffff;
+  --text: #1d2433;
+  --muted: #667085;
+  --border: #d9dee8;
+  --primary: #1f5eff;
+  --primary-dark: #1647c4;
+  --ok: #12a150;
+  --ok-bg: #e6f7ee;
+  --bad: #d92d20;
+  --bad-bg: #fdecea;
+  --hover: #eef3ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #0f2a5f;
+  color: #fff;
+}
+.topbar h1 { margin: 0; font-size: 1.15rem; }
+.stats { display: flex; gap: 8px; }
+.pill { padding: 4px 12px; border-radius: 999px; font-size: .95rem; }
+.correct-pill { background: var(--ok); }
+.wrong-pill { background: var(--bad); }
+
+.container { max-width: 760px; margin: 24px auto; padding: 0 16px; }
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(16, 24, 40, .08);
+}
+
+.hidden { display: none !important; }
+.muted { color: var(--muted); }
+
+.progress-row { display: flex; justify-content: space-between; font-size: .95rem; }
+.progress { height: 8px; background: var(--border); border-radius: 999px; margin: 8px 0 20px; overflow: hidden; }
+#progressBar { height: 100%; width: 0; background: var(--primary); transition: width .3s; }
+
+.question { font-size: 1.2rem; margin: 0 0 16px; }
+
+.q-images { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.q-images img {
+  max-width: 100%;
+  max-height: 280px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+}
+
+.options { display: flex; flex-direction: column; gap: 10px; }
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  font: inherit;
+  color: inherit;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.option:hover:not(:disabled) { background: var(--hover); border-color: var(--primary); }
+.option:disabled { cursor: default; }
+.option .letter {
+  flex: none;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--bg);
+  font-weight: 700;
+}
+.option img { max-height: 110px; max-width: 160px; border-radius: 6px; }
+.option .body { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+.option.correct { background: var(--ok-bg); border-color: var(--ok); }
+.option.correct .letter { background: var(--ok); color: #fff; }
+.option.wrong { background: var(--bad-bg); border-color: var(--bad); }
+.option.wrong .letter { background: var(--bad); color: #fff; }
+.option.dim { opacity: .55; }
+
+.feedback {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.feedback.ok { background: var(--ok-bg); color: var(--ok); }
+.feedback.bad { background: var(--bad-bg); color: var(--bad); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.actions.spread { justify-content: space-between; }
+
+.btn {
+  padding: 10px 20px;
+  font: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid var(--primary);
+  background: #fff;
+  color: var(--primary);
+  cursor: pointer;
+}
+.btn.primary { background: var(--primary); color: #fff; }
+.btn.primary:hover:not(:disabled) { background: var(--primary-dark); }
+.btn.ghost { border-color: var(--border); color: var(--muted); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.part-picker { display: grid; gap: 6px; margin-top: 16px; max-width: 320px; font-weight: 600; }
+.part-picker select { width: 100%; padding: 10px 12px; font: inherit; color: inherit; background: #fff; border: 2px solid var(--border); border-radius: 10px; }
+.check { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+
+.score { font-size: 2rem; font-weight: 700; margin: 8px 0; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 20;
+  display: grid; place-items: center;
+  background: rgba(0, 0, 0, .8);
+  cursor: zoom-out;
+}
+.lightbox img { max-width: 94vw; max-height: 90vh; border-radius: 8px; background: #fff; }
+
+@media (max-width: 520px) {
+  .card { padding: 16px; }
+  .question { font-size: 1.05rem; }
+  .topbar h1 { font-size: 1rem; }
+}
