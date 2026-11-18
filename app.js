@@ -47,7 +47,7 @@
 
   function imageEl(name) {
     const img = document.createElement("img");
-    img.src = "images/" + name;
+    img.src = "images/images/" + name;
     img.alt = "Ishusho";
     img.loading = "lazy";
     return img;
